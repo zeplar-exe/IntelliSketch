@@ -1,7 +1,7 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
+using System;
 
-namespace Avalonia.Desktop
+namespace Desktop
 {
     class Program
     {
