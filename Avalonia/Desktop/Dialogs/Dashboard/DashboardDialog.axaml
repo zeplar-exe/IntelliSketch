@@ -1,0 +1,45 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dashboard="clr-namespace:Desktop.Dialogs.Dashboard"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Desktop.Dialogs.Dashboard.DashboardDialog"
+        Width="550"
+        Height="300"
+        Title="DashboardDialog"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False">
+    <Panel Margin="15">
+        <Grid RowDefinitions="Auto, Auto, *, Auto">
+            <Label
+                Grid.Row="0"
+                FontWeight="Bold" FontSize="22">
+                Your dashboard
+            </Label>
+            
+            <Separator Grid.Row="1"/>
+            
+            <ScrollViewer Grid.Row="2">
+                <Grid RowDefinitions="Auto, 25, Auto">
+                    <UniformGrid Grid.Row="0">
+                        <UserControl>
+                            <dashboard:DashboardItem
+                                Height="95"
+                                HorizontalAlignment="Stretch"
+                                Header="Free Draw"
+                                Description="With paper, pen, and imagination."/>
+                        </UserControl>
+                    </UniformGrid>
+                    
+                    <StackPanel Grid.Row="2">
+                        
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+            
+        </Grid>
+    </Panel>
+</Window>

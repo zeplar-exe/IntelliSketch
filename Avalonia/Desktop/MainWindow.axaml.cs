@@ -1,21 +1,34 @@
-using Avalonia.Controls;
+using System.Threading.Tasks;
+using Avalonia.ReactiveUI;
+using Desktop.Dialogs;
 using Desktop.Pages;
-using Desktop.ViewModel;
+using Desktop.ViewModels;
+using ReactiveUI;
+using DashboardDialog = Desktop.Dialogs.Dashboard.DashboardDialog;
 
 namespace Desktop
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     {
-        public MainWindowViewModel ViewModel { get; }
-        
         public MainWindow()
         {
-            ViewModel = new MainWindowViewModel();
-            DataContext = ViewModel;
-
             InitializeComponent();
 
-            ViewModel.Page = new FreeDrawPage();
+            ViewModel = new MainWindowViewModel();
+
+            var dashboardHandler = ViewModel!.ShowDashboard.RegisterHandler(DoShowDashboardAsync);
+            this.WhenActivated(d => d(dashboardHandler));
+        }
+
+        private async Task DoShowDashboardAsync(InteractionContext<DashboardDialogViewModel, PageOpenInfo> interaction)
+        {
+            var dialog = new DashboardDialog
+            {
+                DataContext = interaction.Input
+            };
+
+            var result = await dialog.ShowDialog<PageOpenInfo>(this);
+            interaction.SetOutput(result);
         }
     }
 }
