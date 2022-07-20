@@ -2,8 +2,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pages="clr-namespace:Desktop.Pages"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Desktop.MainWindow"
-        Title="Desktop">
-    Welcome to Avalonia!
+        Title="IntelliSketch">
+        
+    <Grid ColumnDefinitions="80, *">
+        <UserControl Grid.Column="0" Background="#ababab">
+            <StackPanel Spacing="20" Margin="10">
+                <Button Background="Transparent">
+                    <Image Source="Assets/4_blocks_home.png"/>
+                </Button>
+                <StackPanel Spacing="20" DataContext="{Binding Page}">
+                    <ItemsControl Items="{Binding Buttons}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="pages:PageButton">
+                                <Button Background="Transparent">
+                                    <Image Source="{Binding Image}"/>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </StackPanel>
+        </UserControl>
+        
+        <UserControl Grid.Column="1" Content="{Binding Page}"/>
+    </Grid>
 </Window>
