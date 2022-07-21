@@ -16,7 +16,12 @@ public class MouseDrawInjector
     public MouseDrawInjector(InputElement element)
     {
         Element = element;
-        // Bitmap = new WriteableBitmap();
+
+        var controlSize = new Size(element.Width, element.Height);
+        var pixelSize = PixelSize.FromSize(controlSize, 1);
+        var dpi =
+        
+        Bitmap = new WriteableBitmap(pixelSize, , PixelFormat.Rgba8888, AlphaFormat.Unpremul);
     }
 
     public void Hook()
